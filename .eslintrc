@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["airbnb", "plugin:react/recommended", "prettier"],
+  "extends": ["airbnb", "airbnb/hooks", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -50,6 +50,8 @@
       }
     ],
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "react/display-name": 0,
+    "func-style": ["warn", "declaration", { "allowArrowFunctions": true }]
   }
 }
