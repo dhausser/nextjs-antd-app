@@ -111,7 +111,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
 }
 
 interface DataType {
-  key: Key
+  key?: Key
   id: number
   title: string
   author: string
