@@ -7,7 +7,7 @@ type Comment = typeof db.comments[0]
 const url = 'http://localhost:4000/comments'
 
 function useComments() {
-  const { data, error } = useSWR<Comment[]>(url, fetcher)
+  const { data, error } = useSWR<Comment[], Error>(url, fetcher)
 
   return {
     comments: data,
