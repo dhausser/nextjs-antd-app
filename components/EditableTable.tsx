@@ -1,8 +1,15 @@
-import React, { useContext, useState, useEffect, useRef } from 'react'
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  Key,
+} from 'react'
 import { Table, Input, Button, Popconfirm, Form } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 
-const EditableContext = React.createContext<FormInstance<any> | null>(null)
+const EditableContext = createContext<FormInstance<any> | null>(null)
 
 interface Item {
   key: string
@@ -88,9 +95,12 @@ const EditableCell: React.FC<EditableCellProps> = ({
       </Form.Item>
     ) : (
       <div
+        role="textbox"
+        tabIndex={0}
         className="editable-cell-value-wrap"
         style={{ paddingRight: 24 }}
         onClick={toggleEdit}
+        onKeyUp={toggleEdit}
       >
         {children}
       </div>
@@ -101,13 +111,14 @@ const EditableCell: React.FC<EditableCellProps> = ({
 }
 
 interface DataType {
+  key: Key
   id: number
   title: string
   author: string
 }
 
 type EditableTableProps = Parameters<typeof Table>[0] & {
-  setDataSource: (arg: DataType[]) => void
+  setDataSource: () => void
   newData: DataType
 }
 
@@ -119,38 +130,10 @@ function EditableTable({
   newData,
 }: EditableTableProps) {
   const [items, setItems] = useState<DataType[] | null>(null)
-  const columns: (ColumnTypes[number] & {
-    editable?: boolean
-    dataIndex: string
-  })[] = [
-    {
-      title: 'Title',
-      dataIndex: 'title',
-      width: '30%',
-      editable: true,
-    },
-    {
-      title: 'Author',
-      dataIndex: 'author',
-    },
-    {
-      title: 'operation',
-      dataIndex: 'operation',
-      render: (_, record) =>
-        dataSource != null && dataSource.length >= 1 ? (
-          <Popconfirm
-            title="Sure to delete?"
-            onConfirm={() => handleDelete(record.id)}
-          >
-            <a>Delete</a>
-          </Popconfirm>
-        ) : null,
-    },
-  ]
 
-  const handleDelete = (key: React.Key) => {
+  const handleDelete = (record: DataType) => {
     if (!items) return
-    setItems(items.filter((item: DataType) => item.id !== key))
+    setItems(items.filter((item: DataType) => item.id !== record.key))
   }
 
   const handleAdd = () => {
@@ -176,6 +159,36 @@ function EditableTable({
       cell: EditableCell,
     },
   }
+
+  const columns: (ColumnTypes[number] & {
+    editable?: boolean
+    dataIndex: string
+  })[] = [
+    {
+      title: 'Title',
+      dataIndex: 'title',
+      width: '30%',
+      editable: true,
+    },
+    {
+      title: 'Author',
+      dataIndex: 'author',
+    },
+    {
+      title: 'operation',
+      dataIndex: 'operation',
+      render: (_, record) =>
+        dataSource != null && dataSource.length >= 1 ? (
+          <Popconfirm
+            title="Sure to delete?"
+            onConfirm={() => handleDelete(record)}
+          >
+            <Button type="link">Delete</Button>
+          </Popconfirm>
+        ) : null,
+    },
+  ]
+
   const reducedColumns = columns.map((col) => {
     if (!col.editable) {
       return col
