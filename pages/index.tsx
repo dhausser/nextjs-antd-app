@@ -1,4 +1,4 @@
-import { Space } from 'antd'
+import { Space, Button } from 'antd'
 import EditableTable from 'components/EditableTable'
 import usePosts from 'hooks/usePosts'
 
@@ -18,8 +18,8 @@ const columns = [
     key: 'action',
     render: () => (
       <Space size="middle">
-        <a>Edit</a>
-        <a>Delete</a>
+        <Button type="link">Edit</Button>
+        <Button type="link">Delete</Button>
       </Space>
     ),
   },
