@@ -16,8 +16,8 @@ export function Layout({ children }: Props) {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header>
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+      <Header theme="light">
+        <Menu theme="light" mode="horizontal" defaultSelectedKeys={['1']}>
           <Menu.Item key="1">
             <Link href="/">Home</Link>
           </Menu.Item>
