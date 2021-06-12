@@ -57,6 +57,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "react/react-in-jsx-scope": 0,
     "react/display-name": 0,
-    "func-style": ["warn", "declaration", { "allowArrowFunctions": true }]
+    "func-style": ["warn", "declaration", { "allowArrowFunctions": true }],
+    "@typescript-eslint/explicit-module-boundary-types": 0
   }
 }
