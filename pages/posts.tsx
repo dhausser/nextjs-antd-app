@@ -1,4 +1,4 @@
-import { Table, Space } from 'antd'
+import { Table, Space, Button } from 'antd'
 import usePosts from 'hooks/usePosts'
 
 const columns = [
@@ -17,8 +17,8 @@ const columns = [
     key: 'action',
     render: () => (
       <Space size="middle">
-        <a>Edit</a>
-        <a>Delete</a>
+        <Button type="link">Edit</Button>
+        <Button type="link">Delete</Button>
       </Space>
     ),
   },
