@@ -9,15 +9,15 @@ interface Props {
   children: ReactNode
 }
 
-export function Layout({ children }: Props) {
+export default function Layout({ children }: Props) {
   return (
     <AntdLayout className="layout">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header theme="light">
-        <Menu theme="light" mode="horizontal" defaultSelectedKeys={['1']}>
+      <Header>
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
           <Menu.Item key="1">
             <Link href="/">Home</Link>
           </Menu.Item>
