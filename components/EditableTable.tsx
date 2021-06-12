@@ -6,6 +6,7 @@ import {
   useRef,
   Key,
 } from 'react'
+import Link from 'next/link'
 import { Table, Input, Button, Popconfirm, Form } from 'antd'
 import { FormInstance } from 'antd/lib/form'
 
@@ -168,7 +169,7 @@ function EditableTable({
       title: 'Title',
       dataIndex: 'title',
       width: '30%',
-      editable: true,
+      render: (_, record) => <Link href={`/posts/${record.id}`}>{record.title}</Link>
     },
     {
       title: 'Author',
