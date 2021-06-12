@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <EditableTable
       dataSource={posts}
-      setDataSource={() => {}}
+      setDataSource={() => null}
       columns={columns}
       newData={newData}
     />
